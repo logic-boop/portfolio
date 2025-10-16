@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+.parent{
+    border: 2px solid whitesmoke;
+    background-color: rgb(163, 162, 162);
+    width: 20%;
+    margin: auto;
+    margin-top: 20px;
+    padding: 25px;
+    height: 500px;
+    border-radius: 10px;
+    position: relative;
+}
+.circle{
+    border: 2px solid black;
+    background-color: white;
+    width: 150px;
+    height: 150px;
+    padding: 20px;
+    border-radius: 100px;
+    margin-right: 50px;
+    position: absolute;
+    top: 30px;
+    left: 600px;
+    animation-name: rotate;
+    animation-iteration-count: infinite;
+    animation-duration: 0.1ms;
+}
+@keyframes rotate{
+    0%{
+        transform: rotate(360deg);
+    }
+    
+}
+.blade1{
+    border: 2px solid green;
+    width: 10px;
+    height: 60px;
+    background-color: black;
+    border-radius: 10px;
+    border: none;
+    position: absolute;
+    top: 12px;
+    left: 65px;
+}
+.blade2{
+    border: 2px solid green;
+    width: 10px;
+    height: 60px;
+    background-color: black;
+    border-radius: 10px;
+    border: none;
+    position: absolute;
+    top: 71px;
+    left: 65px;
+}
+.straight1{
+    /* border: 2px solid green; */
+    width: 10px;
+    height: 100px;
+    background-color: rgb(100, 99, 99);
+    position: absolute;
+    top: 200px;
+    left: 670px;
+}
+.straight2{
+    /* border: 2px solid green; */
+    width: 30px;
+    height: 100px;
+    background-color: blue;
+    border-radius: 10px;
+    position: absolute;
+    top: 310px;
+    left: 660px;
+
+}
+.blacksquare{
+    border: 2px solid black;
+    background-color: black;
+    width: 100px;
+    height: 65px;
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    top: 420px;
+    left: 625px;
+}
+.square{
+    border: 2px solid black;
+    background-color: blue;
+    width: 50px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+.square p{
+    text-align: center;
+    color: white;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

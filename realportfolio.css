@@ -673,3 +673,103 @@ strong {
         height: 140px;
     }
 }
+
+/* ====== CONTACT SECTION ====== */
+.wrapper{
+    /* border: 2px solid palevioletred; */
+    background-color: rgb(5, 5, 75);
+    height: 90vh;
+    padding: 10px;
+    align-content: center;
+}
+.contact{
+    /* border: 2px solid white; */
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    padding: 15px;
+}
+.container{
+    /* border: 2px solid white; */
+    display: grid;
+    justify-content: center;
+    padding: 10px;
+}
+.container .two{
+    /* border: 2px solid white; */
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    padding: 10px;
+}
+.two .name{
+    width: 300px;
+    height: 10vh;
+    background-color: rgb(1, 1, 43);
+    font-size: 18px;
+    font-weight: 400;
+}
+.container .message{
+    /* border: 2px solid crimson; */
+    /* padding: 5px; */
+}
+.container .mess{
+    /* border: 2px solid white; */
+    width: 617px;
+    height: 40vh;
+    background-color: rgb(1, 1, 43);
+    font-size: 18px;
+}
+.send{
+    /* border: 2px solid white; */
+    padding: 15px;
+    border-radius: 10px;
+    width: 200px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    background-color: rgb(131, 8, 24);
+}
+
+/* ====== MEDIA QUERY FOR CONTACT SECTION ====== */
+@media(max-width:695px){
+    .two .name{
+        width: 180px;
+    }
+    .container .mess{
+        width: 385px;
+    }
+    .send{
+        width: 150px;
+        font-size: 15px;
+    }
+}
+@media(max-width:466px){
+    .two .name{
+        width: 120px;
+        font-size: 12px;
+    }
+    .container .mess{
+        width: 265px;
+        font-size: 12px;
+    }
+    .send{
+        width: 120px;
+        font-size: 12px;
+    }
+}
+@media(max-width:375px){
+    .two .name{
+        width: 90px;
+        font-size: 10px;
+    }
+    .container .mess{
+        width: 210px;
+        font-size: 10px;
+    }
+    .send{
+        width: 110px;
+        font-size: 9px;
+    }
+}

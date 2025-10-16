@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.alert {
+    border: 2px solid black;
+    background-color: #1433D6;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border: none;
+    gap: 32em;
+}
+
+.txt {
+    border: 2px solid crimson;
+    color: white;
+    font-weight: 700;
+    border: none;
+}
+
+.menu1 ul {
+    border: 2px solid yellowgreen;
+    display: flex;
+    gap: 2em;
+    border: none;
+}
+
+.menu1 .m1 li a {
+    color: white;
+    text-decoration: underline;
+    /* transition: ease-in 0.3s; */
+}
+
+/* .menu .ml li a :hover{
+    color: yellow;
+} */
+header {
+    border: 2px solid green;
+    border: none;
+}
+
+nav {
+    width: 96%;
+    margin: auto;
+}
+
+.headersect {
+    border: 2px solid greenyellow;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+}
+
+.headersect .digital {
+    border: 2px solid rebeccapurple;
+    border: none;
+}
+
+.digi_logo {
+    width: 45%;
+}
+
+.headersect .menu2 {
+    border: 2px solid palevioletred;
+    display: flex;
+    gap: 2em;
+    padding: 25px;
+    border: none;
+}
+
+.headersect .menu2 a {
+    color: rgb(77, 91, 124);
+    font-family: inter, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.btn {
+    display: flex;
+    gap: 1em;
+}
+
+.btn .log {
+    border: thin solid black;
+    background-color: white;
+    border-radius: 20px;
+    color: rgb(77, 91, 124);
+    padding: 10px 15px;
+    border: none;
+}
+.log a :hover{
+    background-color: #eff2fb;
+}
+
+.btn .sign {
+    border: thin solid black;
+    background-color: #1433D6;
+    border-radius: 20px;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+section {
+    border: 2px solid crimson;
+    /* width: auto; */
+    border: none;
+}
+
+.herosect {
+    border: 2px solid purple;
+    background-image: linear-gradient(#04187d, #045FF7);
+    /* color: #031367d0; */
+    border: none;
+}
+
+.herosect h2 {
+    border: 2px solid yellow;
+    font-family: epilogue, sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+    height: 56px;
+    color: white;
+    text-align: center;
+    padding: 110px;
+    border: none;
+}
+
+.herosect .icons {
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    align-items: center;
+    border: none;
+}
+
+.icons .email {
+    border: thin solid whitesmoke;
+    color: white;
+    font-family: inter, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px;
+    width: 18%;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 0px 1px 1px white;
+}
+
+.email:hover {
+    background-color: white;
+    color: black;
+
+
+
+}
+
+.icons .google {
+    border: thin solid whitesmoke;
+    color: black;
+    font-family: inter, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px;
+    width: 18%;
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    background-color: white;
+    border: none;
+}
+
+.icons .github {
+    border: thin solid whitesmoke;
+    color: black;
+    font-family: inter, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px;
+    width: 18%;
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    background-color: white;
+    border: none;
+}
+section video {
+    border-radius: 16px;
+    max-width: 800px;
+}
+video {
+    border: 2px solid fuchsia;
+    margin-left: 20%;
+    /* padding: 15px; */
+    border: none;
+}
+
+.enterprise {
+    border: 2px solid gold;
+    color: white;
+    text-align: center;
+    font-size: 17px;
+    line-height: 25px;
+    font-family: inter, sans-serif;
+    /* padding: 25px; */
+    border: none;
+}
+
+.marquee {
+    border: 2px solid green;
+    padding: 15px;
+    border: none;
+}
+.mark{
+    border: 2px solid grey;
+    display: flex;
+    gap: 5em;
+    border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
