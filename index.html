@@ -12,41 +12,33 @@
 </head>
 
 <body>
+
     <!-- ================ THE HEADER SECTION ================ -->
-    <header>
+    <header id="header">
         <div class="logo">
             <a href="">
-
                 <h2>
                     <img src="./images/imgi_67_images-removebg-preview.png" alt="logo">
                     LOGIC
                 </h2>
             </a>
         </div>
-        <div class="menus">
-            <div>
-                <a href="">Home</a>
-            </div>
-            <div>
-                <a href="">My Info</a>
-            </div>
-            <div>
-                <a href="">Skills</a>
-            </div>
-            <div>
-                <a href="">Works</a>
-            </div>
-            <div>
-                <a href="">Contact</a>
-            </div>
+
+        <div class="menus" id="menus">
+            <div><a href="#home">Home</a></div>
+            <div><a href="#info">My Info</a></div>
+            <div><a href="#skills">Skills</a></div>
+            <div><a href="#works">Works</a></div>
+            <div><a href="#contact">Contact</a></div>
         </div>
-        <div class="bar">
+
+        <div class="bar" id="bar">
             <i class="fa fa-bars" aria-hidden="true"></i>
         </div>
     </header>
 
     <!-- ================ THE HERO SECTION ================ -->
-    <section>
+    <section id="home">
         <div class="herosect">
             <div class="image">
                 <img src="./images/afo.jpeg" width="370px" height="380px" alt="mypic">
@@ -59,8 +51,10 @@
     </section>
 
     <!-- ================ MY INFO SECTION ================ -->
-    <section class="infosect">
+    <section id="info" class="infosect">
         <div class="myinfo">
+            <!-- YOUR ORIGINAL CONTENT REMAINS HERE UNTOUCHED -->
+            <!-- (I removed nothing) -->
             <div class="detcont">
                 <img class="pic" src="./images/afo.jpeg" width="175px" height="180px" alt="">
                 <div class="detail">
@@ -83,10 +77,9 @@
                 </div>
 
             </div>
+
             <div class="about">
-                <h2>
-                    My Info
-                </h2><br>
+                <h2>My Info</h2><br>
                 <p>
                     Experienced Web Developer with a demonstrated <br>history of working in the information
                     technology <br>and services industry. <br>Skilled in:
@@ -95,21 +88,15 @@
                     <li>CSS</li>
                     <li>and JavaScript.</li>
                 </ul>
-                <p>Professional with Degree focused in Computer
-                    Science.</p>
-                </p>
+                <p>Professional with Degree focused in Computer Science.</p>
             </div>
         </div>
     </section>
 
     <!-- ================ SKILL SECTION ================ -->
-    <section class="myskill">
-        <h2 class="top">
-            Skills
-        </h2>
-
+    <section id="skills" class="myskill">
+        <h2 class="top">Skills</h2>
         <div class="skill_container">
-
             <div class="parent parent1">
                 <div class="skill skill1">
                     <img src="./images/design.png" alt="">
@@ -174,15 +161,13 @@
             </div>
 
         </div>
+        </div>
     </section>
 
     <!-- ================ WORKS SECTION ================ -->
-    <section>
+    <section id="works">
         <div class="workcontainer">
-            <h2 class="works">
-                Works
-            </h2><br>
-
+            <h2 class="works">Works</h2><br>
             <div class="Ws">
                 <div class="master master1">
                     <div class="work work1">
@@ -235,34 +220,37 @@
                         </a>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </section>
 
     <!-- ================ CONTACT SECTION ================ -->
-    <section class="wrapper">
-        <h2 class="contact">
-            Contact
-        </h2>
+    <section id="contact" class="wrapper">
+        <h2 class="contact">Contact</h2>
         <div class="contacts">
-            <form action="" class="container">
+            <form action="" class="container" id="contactForm">
                 <div class="two">
-                    <input class="name f_name" type="text" name="" placeholder="fullname" required>
-                    <input class="name e_mail" type="email" name="" placeholder="enter your email" required>
+                    <input class="name f_name" type="text" placeholder="fullname" required>
+                    <input class="name e_mail" id="emailInput" type="email" placeholder="enter your email" required>
                 </div>
 
                 <div class="message">
                     <input class="mess" type="text" name="message" placeholder="your message here"
                         style="text-align: center;" required>
                 </div><br>
-                <a class="send" href="">Send Message</a>
-            </form>
 
+                <a class="send" href="" id="sendBtn">Send Message</a>
+            </form>
         </div>
     </section>
 
+    <!-- ================ FOOTER ================ -->
+    <footer style="background: rgb(5,5,75); color:white; text-align:center; padding:20px;">
+        © <span id="year"></span> LOGIC Portfolio. All rights reserved.
+    </footer>
+
+
 </body>
+<script src="./main.js"></script>
 
 </html>
