@@ -21,7 +21,7 @@ header {
     left: 0;
     z-index: 100;
     background: linear-gradient(rgba(3, 3, 37, 0.95), rgba(2, 2, 34, 0.85));
-    box-shadow: 0 4px 10px rgba(92, 5, 5, 0.3);
+    box-shadow: 0 4px 10px rgba(233, 223, 223, 0.3);
     box-sizing: border-box;
     opacity: 0;
     animation: headerSlideIn 0.8s forwards;
@@ -88,7 +88,7 @@ header.scrolled {
     display: block;
     width: 0%;
     height: 2px;
-    background: rgb(65, 31, 37);
+    background: rgb(206, 161, 169);
     transition: width 0.3s;
     position: absolute;
     bottom: -5px;
