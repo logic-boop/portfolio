@@ -47,106 +47,67 @@ window.addEventListener('scroll', () => {
 
 
 
-// SAVE EMAIL
-const sendBtn = document.getElementById("sendBtn");
-sendBtn.addEventListener("click", function (e) {
-    e.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Initialize EmailJS
+    emailjs.init("rN0wluqj_kQGuEOWA");
 
-    const email = document.getElementById("emailInput").value;
+    const header = document.getElementById('header');
+    const backToTop = document.getElementById('backToTop');
+    const contactForm = document.getElementById('contactForm');
+    const loader = document.getElementById('loader');
+    const status = document.getElementById('formStatus');
 
-    if (email.trim() === "") {
-        alert("Please enter an email.");
-        return;
-    }
+    // 2. Scroll Animations
+    window.addEventListener('scroll', () => {
+        // Header Blur
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
 
-    let storedEmails = JSON.parse(localStorage.getItem("savedEmails")) || [];
-    storedEmails.push(email);
-
-    localStorage.setItem("savedEmails", JSON.stringify(storedEmails));
-
-    alert("Email saved successfully!");
-});
-
-// DYNAMIC YEAR
-document.getElementById("year").textContent = new Date().getFullYear();
-
-
-//For contact form
-(function () {
-    emailjs.init("rN0wluqj_kQGuEOWA"); //Public Key
-})();
-
-const form = document.getElementById("contactForm");
-const status = document.getElementById("formStatus");
-const btnLoader = document.getElementById("btnLoader");
-const btnText = document.querySelector(".btn-text");
-
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    // Show loader
-    btnLoader.style.display = "inline-block";
-    btnText.style.opacity = "0.6";
-
-    emailjs.sendForm(
-        "service_4j7jmt7",   //Service ID
-        "template_wq02ihd",  //Template ID
-        this
-    )
-        .then(() => {
-            status.textContent = "Message sent successfully ✔";
-            status.classList.remove("error");
-            status.classList.add("success");
-            form.reset();
-
-            // Animate feedback
-            status.style.opacity = 0;
-            setTimeout(() => status.style.opacity = 1, 50);
-
-            // Hide loader
-            btnLoader.style.display = "none";
-            btnText.style.opacity = "1";
-        })
-        .catch(() => {
-            status.textContent = "Failed to send message ❌";
-            status.classList.remove("success");
-            status.classList.add("error");
-
-            // Animate shake
-            status.style.transform = "translateX(-5px)";
-            setTimeout(() => status.style.transform = "translateX(5px)", 50);
-            setTimeout(() => status.style.transform = "translateX(0px)", 100);
-
-            // Hide loader
-            btnLoader.style.display = "none";
-            btnText.style.opacity = "1";
-        });
-});
-
-
-//For footer
-const yearSpan = document.getElementById("year");
-const currentYear = new Date().getFullYear();
-yearSpan.textContent = currentYear;
-
-// ===== BACK TO TOP BUTTON =====
-const backToTopBtn = document.getElementById("backToTop");
-
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 200) { // show button after scrolling down 200px
-        backToTopBtn.classList.add("show");
-    } else {
-        backToTopBtn.classList.remove("show");
-    }
-});
-
-backToTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+        // Back to Top Button
+        if (window.scrollY > 500) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
     });
-});
 
+    // 3. Smooth Scroll to Top
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 4. Contact Form Submission
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        loader.style.display = 'inline-block';
+        document.querySelector('.btn-text').textContent = 'Sending...';
+
+        emailjs.sendForm('service_4j7jmt7', 'template_wq02ihd', this)
+            .then(() => {
+                status.textContent = "Message Sent Successfully! ✔";
+                status.style.color = "#00ff99";
+                contactForm.reset();
+                resetBtn();
+            }, (err) => {
+                status.textContent = "Error sending message. Try again.";
+                status.style.color = "#ff4d4d";
+                resetBtn();
+            });
+    });
+
+    function resetBtn() {
+        loader.style.display = 'none';
+        document.querySelector('.btn-text').textContent = 'Send Message';
+    }
+
+    // 5. Dynamic Footer Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+});
 
 
 
