@@ -223,7 +223,7 @@ header.scrolled {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 100vh;
+    height: 120vh;
     width: 100%;
     margin: 0 auto;
     background-color: rgb(5, 5, 75);
@@ -295,13 +295,13 @@ header.scrolled {
     }
 
     .herosect {
-        height: 80vh;
+        height: 60vh;
     }
 }
 
 @media(max-width: 768px) {
     .herosect {
-        height: 100vh;
+        height: 60vh;
     }
 }
 
@@ -326,8 +326,9 @@ header.scrolled {
         justify-content: center;
         text-align: center;
         gap: 20px;
-        padding: 20px 0;
-        padding-top: 80px;
+        /* padding: 20px 0;
+        padding-top: 80px; */
+        height: 50vh;
     }
 
     .name p {
@@ -337,13 +338,14 @@ header.scrolled {
 
 @media(max-width: 472px) {
     .herosect {
-        height: 125vh;
+        height: 95vh;
+        gap: 10px;
     }
 }
 
 @media(max-width: 320px) {
     .herosect {
-        height: 105vh;
+        height: 110vh;
     }
 
     .image img {
@@ -362,7 +364,6 @@ header.scrolled {
 
 
 /* ========== MY INFO SECTION ========== */
-/* ===== INFO SECTION ===== */
 .infosect {
     background-color: rgb(1, 1, 92);
     padding: 50px 0;
