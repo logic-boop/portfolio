@@ -99,11 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // SECOND: Trigger the Auto-Reply to the CLIENT
         // Replace 'YOUR_AUTO_REPLY_TEMPLATE_ID' with the ID of your new template
-        emailjs.sendForm(
-          "service_4j7jmt7",
-          "template_wi7z1rj",
-          this
-        );
+        emailjs.sendForm("service_4j7jmt7", "template_wi7z1rj", this);
 
         contactForm.reset();
         resetBtn();
@@ -114,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         status.textContent = "Error sending message. Try again.";
         status.className = "error";
         resetBtn();
-      }
+      },
     );
   });
 
@@ -125,4 +121,111 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 5. Dynamic Footer Year
   document.getElementById("year").textContent = new Date().getFullYear();
+});
+
+// ==========================================
+// PREMIUM 3D & TYPING ENHANCEMENTS
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. AUTO-TYPING EFFECT
+  // We target your existing <h1> and <p> in the hero section
+  const nameElement = document.querySelector(".name h1");
+  const jobElement = document.querySelector(".name p");
+
+  // Clear original text for typing to start
+  const originalName = "Olubode Afolabi James";
+  const originalJob = "Full-Stack Web Developer";
+  nameElement.innerHTML = "";
+  jobElement.innerHTML = "";
+
+  new Typed(nameElement, {
+    strings: [originalName],
+    typeSpeed: 60,
+    showCursor: true,
+    cursorChar: "|",
+    onComplete: () => {
+      new Typed(jobElement, {
+        strings: [originalJob, "Software Engineer", "Creative Technologist"],
+        typeSpeed: 40,
+        backSpeed: 30,
+        loop: true,
+      });
+    },
+  });
+
+  // 2. 3D CONSTELLATION BACKGROUND
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000,
+  );
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+
+  const heroSection = document.getElementById("home");
+  renderer.setSize(window.innerWidth, heroSection.offsetHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+
+  // Create a container for the 3D canvas
+  const container = document.createElement("div");
+  container.id = "canvas-container";
+  heroSection.appendChild(container);
+  container.appendChild(renderer.domElement);
+
+  // Create Particles (Stars/Dots)
+  const particlesGeometry = new THREE.BufferGeometry();
+  const particlesCount = 1500;
+  const posArray = new Float32Array(particlesCount * 3);
+
+  for (let i = 0; i < particlesCount * 3; i++) {
+    posArray[i] = (Math.random() - 0.5) * 10;
+  }
+  particlesGeometry.setAttribute(
+    "position",
+    new THREE.BufferAttribute(posArray, 3),
+  );
+
+  const material = new THREE.PointsMaterial({
+    size: 0.005,
+    color: "#0066ff",
+    transparent: true,
+    opacity: 0.8,
+  });
+
+  const particlesMesh = new THREE.Points(particlesGeometry, material);
+  scene.add(particlesMesh);
+  camera.position.z = 3;
+
+  // Mouse Tracking Logic
+  let mouseX = 0;
+  let mouseY = 0;
+  document.addEventListener("mousemove", (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+  });
+
+  function animate() {
+    requestAnimationFrame(animate);
+
+    // Smooth rotation
+    particlesMesh.rotation.y += 0.001;
+
+    // React to mouse movement
+    if (mouseX > 0) {
+      particlesMesh.rotation.x = mouseY * 0.00008;
+      particlesMesh.rotation.y = mouseX * 0.00008;
+    }
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // Handle Resize
+  window.addEventListener("resize", () => {
+    camera.aspect = window.innerWidth / heroSection.offsetHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, heroSection.offsetHeight);
+  });
 });
