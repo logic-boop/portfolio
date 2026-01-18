@@ -79,45 +79,98 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // 4. Contact Form Submission (FIXED SECTION with Auto-Reply)
+  // contactForm.addEventListener("submit", function (e) {
+  //   e.preventDefault();
+
+  //   // Show loader and change text
+  //   if (loader) loader.style.display = "inline-block";
+  //   document.querySelector(".btn-text").textContent = "Sending...";
+
+  //   // Ensure status is visible (opacity 1)
+  //   status.style.opacity = "1";
+  //   status.textContent = "Sending...";
+
+  //   // FIRST: Send the email to YOU
+  //   emailjs.sendForm("service_4j7jmt7", "template_wq02ihd", this).then(
+  //     () => {
+  //       // Success: apply your success styles
+  //       status.textContent = "Message Sent Successfully! ✔";
+  //       status.className = "success";
+
+  //       // SECOND: Trigger the Auto-Reply to the CLIENT
+  //       // Replace 'YOUR_AUTO_REPLY_TEMPLATE_ID' with the ID of your new template
+  //       emailjs.sendForm("service_4j7jmt7", "template_wi7z1rj", this);
+
+  //       contactForm.reset();
+  //       resetBtn();
+  //     },
+  //     (err) => {
+  //       // Error: apply your error styles
+  //       console.error("EmailJS Error:", err);
+  //       status.textContent = "Error sending message. Try again.";
+  //       status.className = "error";
+  //       resetBtn();
+  //     },
+  //   );
+  // });
+
+  // function resetBtn() {
+  //   if (loader) loader.style.display = "none";
+  //   document.querySelector(".btn-text").textContent = "Send Message";
+  // }
+
+  // 4. Contact Form Submission (PREMIUM PARTNERSHIP LOGIC)
   contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // Show loader and change text
+    const btnText = document.querySelector(".btn-text");
+    const status = document.getElementById("formStatus");
+    const loader = document.getElementById("btnLoader");
+
+    // UI Feedback: Loading State
     if (loader) loader.style.display = "inline-block";
-    document.querySelector(".btn-text").textContent = "Sending...";
-
-    // Ensure status is visible (opacity 1)
+    btnText.textContent = "Negotiating..."; // High-end terminology
     status.style.opacity = "1";
-    status.textContent = "Sending...";
+    status.textContent = "Connecting to Neuralis Hub...";
+    status.className = "";
 
-    // FIRST: Send the email to YOU
+    // FIRST: Send the lead to YOUR inbox
     emailjs.sendForm("service_4j7jmt7", "template_wq02ihd", this).then(
       () => {
-        // Success: apply your success styles
-        status.textContent = "Message Sent Successfully! ✔";
+        // SUCCESS UI
+        status.textContent = "Partnership Request Sent! ✔";
         status.className = "success";
 
-        // SECOND: Trigger the Auto-Reply to the CLIENT
-        // Replace 'YOUR_AUTO_REPLY_TEMPLATE_ID' with the ID of your new template
+        // TRIGGER SUCCESS GLOW
+        contactForm.style.borderColor = "#00f2ff";
+        contactForm.style.boxShadow = "0 0 30px rgba(0, 242, 255, 0.4)";
+
+        // SECOND: Trigger Auto-Reply to CLIENT (Your template_wi7z1rj)
+        // This template should mention your Growth role at Soul Detox Brooklyn
         emailjs.sendForm("service_4j7jmt7", "template_wi7z1rj", this);
 
-        contactForm.reset();
-        resetBtn();
+        // RESET
+        setTimeout(() => {
+          contactForm.reset();
+          resetBtn();
+          contactForm.style.borderColor = "rgba(255, 255, 255, 0.08)";
+          contactForm.style.boxShadow = "none";
+        }, 3000);
       },
       (err) => {
-        // Error: apply your error styles
+        // ERROR UI
         console.error("EmailJS Error:", err);
-        status.textContent = "Error sending message. Try again.";
+        status.textContent = "Transmission Error. Please try again.";
         status.className = "error";
         resetBtn();
       },
     );
-  });
 
-  function resetBtn() {
-    if (loader) loader.style.display = "none";
-    document.querySelector(".btn-text").textContent = "Send Message";
-  }
+    function resetBtn() {
+      if (loader) loader.style.display = "none";
+      btnText.textContent = "Initiate Partnership";
+    }
+  });
 
   // 5. Dynamic Footer Year
   document.getElementById("year").textContent = new Date().getFullYear();
