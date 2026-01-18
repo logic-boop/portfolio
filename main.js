@@ -1,326 +1,238 @@
-const bar = document.getElementById("bar");
-const menus = document.getElementById("menus");
-const menuLinks = menus.querySelectorAll("a");
-const header = document.getElementById("header");
-
-// Toggle dropdown menu and animate hamburger
-bar.addEventListener("click", () => {
-  menus.classList.toggle("show");
-  bar.classList.toggle("active");
-
-  // Trigger fade-in animation for menu links
-  if (menus.classList.contains("show")) {
-    menuLinks.forEach((link, index) => {
-      link.style.animationDelay = `${index * 0.1}s`;
-    });
-  }
-});
-
-// Smooth scroll for menu links
-menuLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const targetId = link.getAttribute("href").substring(1);
-    const targetSection = document.getElementById(targetId);
-
-    targetSection.scrollIntoView({
-      behavior: "smooth",
-    });
-
-    // Close menu on mobile after click
-    if (menus.classList.contains("show")) {
-      menus.classList.remove("show");
-      bar.classList.remove("active");
-    }
-  });
-});
-
-// Header transparency and shrink on scroll
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-});
+/**
+ * OLUBODE AFOLABI JAMES - PREMIUM NEURAL INTERFACE SCRIPT
+ * Adjusted for $350/hr Technical Growth Architect Role
+ */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Initialize EmailJS
-  emailjs.init("rN0wluqj_kQGuEOWA");
-
+  // --- 1. CORE NAVIGATION & UI ELEMENTS ---
+  const bar = document.getElementById("bar");
+  const menus = document.getElementById("menus");
+  const menuLinks = menus.querySelectorAll("a");
   const header = document.getElementById("header");
   const backToTop = document.getElementById("backToTop");
-  const contactForm = document.getElementById("contactForm");
+  const yearSpan = document.getElementById("year");
 
-  // FIX 1: Corrected ID to 'btnLoader' to match your HTML
-  const loader = document.getElementById("btnLoader");
-  const status = document.getElementById("formStatus");
+  // Toggle dropdown menu
+  bar.addEventListener("click", () => {
+    menus.classList.toggle("show");
+    bar.classList.toggle("active");
+    if (menus.classList.contains("show")) {
+      menuLinks.forEach((link, index) => {
+        link.style.animationDelay = `${index * 0.1}s`;
+      });
+    }
+  });
 
-  // 2. Scroll Animations
+  // Smooth scroll and auto-close menu
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute("href").substring(1);
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth" });
+      }
+      if (menus.classList.contains("show")) {
+        menus.classList.remove("show");
+        bar.classList.remove("active");
+      }
+    });
+  });
+
+  // Global Scroll Handler
   window.addEventListener("scroll", () => {
-    // Header Blur
+    // Header Transparency
     if (window.scrollY > 50) {
       header.classList.add("scrolled");
     } else {
       header.classList.remove("scrolled");
     }
 
-    // Back to Top Button
-    if (window.scrollY > 500) {
-      backToTop.style.display = "block";
-    } else {
-      backToTop.style.display = "none";
+    // Back to Top Visibility
+    if (backToTop) {
+      backToTop.style.display = window.scrollY > 500 ? "block" : "none";
     }
   });
 
-  // 3. Smooth Scroll to Top
-  backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  if (backToTop) {
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 
-  // 4. Contact Form Submission (FIXED SECTION with Auto-Reply)
-  // contactForm.addEventListener("submit", function (e) {
-  //   e.preventDefault();
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-  //   // Show loader and change text
-  //   if (loader) loader.style.display = "inline-block";
-  //   document.querySelector(".btn-text").textContent = "Sending...";
+  // --- 2. THE HIRED FORM (PURE CODE - NO REFRESH) ---
+  const contactForm = document.getElementById("contactForm");
+  const status = document.getElementById("formStatus");
 
-  //   // Ensure status is visible (opacity 1)
-  //   status.style.opacity = "1";
-  //   status.textContent = "Sending...";
+  if (contactForm) {
+    contactForm.addEventListener("submit", async function (e) {
+      // CRITICAL FIX: Stops page refresh
+      e.preventDefault();
 
-  //   // FIRST: Send the email to YOU
-  //   emailjs.sendForm("service_4j7jmt7", "template_wq02ihd", this).then(
-  //     () => {
-  //       // Success: apply your success styles
-  //       status.textContent = "Message Sent Successfully! ✔";
-  //       status.className = "success";
+      const btnText = this.querySelector(".btn-text");
+      const loader = document.getElementById("btnLoader");
 
-  //       // SECOND: Trigger the Auto-Reply to the CLIENT
-  //       // Replace 'YOUR_AUTO_REPLY_TEMPLATE_ID' with the ID of your new template
-  //       emailjs.sendForm("service_4j7jmt7", "template_wi7z1rj", this);
+      // UI: Initiate Neural Uplink
+      if (loader) loader.style.display = "inline-block";
+      btnText.textContent = "TRANSMITTING...";
+      status.className = "";
+      status.style.opacity = "1";
+      status.textContent = "Initiating Neural Uplink to Olubode...";
 
-  //       contactForm.reset();
-  //       resetBtn();
-  //     },
-  //     (err) => {
-  //       // Error: apply your error styles
-  //       console.error("EmailJS Error:", err);
-  //       status.textContent = "Error sending message. Try again.";
-  //       status.className = "error";
-  //       resetBtn();
-  //     },
-  //   );
-  // });
+      const formData = new FormData(this);
 
-  // function resetBtn() {
-  //   if (loader) loader.style.display = "none";
-  //   document.querySelector(".btn-text").textContent = "Send Message";
-  // }
+      try {
+        const response = await fetch("https://formspree.io/f/xreepjlv", {
+          method: "POST",
+          body: formData,
+          headers: { Accept: "application/json" },
+        });
 
-  // 4. Contact Form Submission (PREMIUM PARTNERSHIP LOGIC)
-  contactForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const btnText = document.querySelector(".btn-text");
-    const status = document.getElementById("formStatus");
-    const loader = document.getElementById("btnLoader");
-
-    // UI Feedback: Loading State
-    if (loader) loader.style.display = "inline-block";
-    btnText.textContent = "Negotiating..."; // High-end terminology
-    status.style.opacity = "1";
-    status.textContent = "Connecting to Neuralis Hub...";
-    status.className = "";
-
-    // FIRST: Send the lead to YOUR inbox
-    emailjs.sendForm("service_4j7jmt7", "template_wq02ihd", this).then(
-      () => {
-        // SUCCESS UI
-        status.textContent = "Partnership Request Sent! ✔";
-        status.className = "success";
-
-        // TRIGGER SUCCESS GLOW
-        contactForm.style.borderColor = "#00f2ff";
-        contactForm.style.boxShadow = "0 0 30px rgba(0, 242, 255, 0.4)";
-
-        // SECOND: Trigger Auto-Reply to CLIENT (Your template_wi7z1rj)
-        // This template should mention your Growth role at Soul Detox Brooklyn
-        emailjs.sendForm("service_4j7jmt7", "template_wi7z1rj", this);
-
-        // RESET
-        setTimeout(() => {
+        if (response.ok) {
+          status.textContent = "PARTNERSHIP SECURED. SYSTEM CLEAR. ✔";
+          status.className = "success";
           contactForm.reset();
-          resetBtn();
-          contactForm.style.borderColor = "rgba(255, 255, 255, 0.08)";
-          contactForm.style.boxShadow = "none";
-        }, 3000);
-      },
-      (err) => {
-        // ERROR UI
-        console.error("EmailJS Error:", err);
-        status.textContent = "Transmission Error. Please try again.";
+          contactForm.style.borderColor = "#00f2ff"; // Growth Architect Cyan
+        } else {
+          throw new Error("Uplink Rejected");
+        }
+      } catch (err) {
+        status.textContent = "TRANSMISSION FAILED. RETRYING...";
         status.className = "error";
-        resetBtn();
-      },
-    );
+        console.error("Neuralis Error:", err);
+      } finally {
+        setTimeout(() => {
+          if (loader) loader.style.display = "none";
+          btnText.textContent = "Initiate Partnership";
+          setTimeout(() => {
+            contactForm.style.borderColor = "rgba(0, 242, 255, 0.2)";
+          }, 5000);
+        }, 3000);
+      }
+    });
+  }
 
-    function resetBtn() {
-      if (loader) loader.style.display = "none";
-      btnText.textContent = "Initiate Partnership";
-    }
-  });
-
-  // 5. Dynamic Footer Year
-  document.getElementById("year").textContent = new Date().getFullYear();
-});
-
-// ==========================================
-// PREMIUM 3D & TYPING ENHANCEMENTS
-// ==========================================
-
-document.addEventListener("DOMContentLoaded", () => {
-  // 1. AUTO-TYPING EFFECT
-  // We target your existing <h1> and <p> in the hero section
+  // --- 3. PREMIUM AUTO-TYPING ---
   const nameElement = document.querySelector(".name h1");
   const jobElement = document.querySelector(".name p");
 
-  // Clear original text for typing to start
-  const originalName = "Olubode Afolabi James";
-  const originalJob = "Full-Stack Web Developer";
-  nameElement.innerHTML = "";
-  jobElement.innerHTML = "";
+  if (nameElement && jobElement) {
+    const originalName = "Olubode Afolabi James";
+    nameElement.innerHTML = "";
+    jobElement.innerHTML = "";
 
-  new Typed(nameElement, {
-    strings: [originalName],
-    typeSpeed: 60,
-    showCursor: true,
-    cursorChar: "|",
-    onComplete: () => {
-      new Typed(jobElement, {
-        strings: [originalJob, "Software Engineer", "Creative Technologist"],
-        typeSpeed: 40,
-        backSpeed: 30,
-        loop: true,
-      });
-    },
-  });
+    new Typed(nameElement, {
+      strings: [originalName],
+      typeSpeed: 60,
+      showCursor: false,
+      onComplete: () => {
+        new Typed(jobElement, {
+          strings: [
+            "Technical Growth Architect",
+            "Full-Stack AI Developer",
+            "Creative Technologist",
+          ],
+          typeSpeed: 40,
+          backSpeed: 30,
+          loop: true,
+        });
+      },
+    });
+  }
 
-  // 2. 3D CONSTELLATION BACKGROUND
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000,
-  );
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-
+  // --- 4. 3D CONSTELLATION (THREE.JS) ---
   const heroSection = document.getElementById("home");
-  renderer.setSize(window.innerWidth, heroSection.offsetHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
+  if (heroSection) {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / heroSection.offsetHeight,
+      0.1,
+      1000,
+    );
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
-  // Create a container for the 3D canvas
-  const container = document.createElement("div");
-  container.id = "canvas-container";
-  heroSection.appendChild(container);
-  container.appendChild(renderer.domElement);
-
-  // Create Particles (Stars/Dots)
-  const particlesGeometry = new THREE.BufferGeometry();
-  const particlesCount = 1500;
-  const posArray = new Float32Array(particlesCount * 3);
-
-  for (let i = 0; i < particlesCount * 3; i++) {
-    posArray[i] = (Math.random() - 0.5) * 10;
-  }
-  particlesGeometry.setAttribute(
-    "position",
-    new THREE.BufferAttribute(posArray, 3),
-  );
-
-  const material = new THREE.PointsMaterial({
-    size: 0.005,
-    color: "#0066ff",
-    transparent: true,
-    opacity: 0.8,
-  });
-
-  const particlesMesh = new THREE.Points(particlesGeometry, material);
-  scene.add(particlesMesh);
-  camera.position.z = 3;
-
-  // Mouse Tracking Logic
-  let mouseX = 0;
-  let mouseY = 0;
-  document.addEventListener("mousemove", (event) => {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-  });
-
-  function animate() {
-    requestAnimationFrame(animate);
-
-    // Smooth rotation
-    particlesMesh.rotation.y += 0.001;
-
-    // React to mouse movement
-    if (mouseX > 0) {
-      particlesMesh.rotation.x = mouseY * 0.00008;
-      particlesMesh.rotation.y = mouseX * 0.00008;
-    }
-
-    renderer.render(scene, camera);
-  }
-  animate();
-
-  // Handle Resize
-  window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / heroSection.offsetHeight;
-    camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, heroSection.offsetHeight);
-  });
-});
+    renderer.setPixelRatio(window.devicePixelRatio);
 
-// For the skills section
-document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".skill");
+    const container = document.createElement("div");
+    container.id = "canvas-container";
+    heroSection.appendChild(container);
+    container.appendChild(renderer.domElement);
 
-  // 1. Reveal on scroll
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add("reveal");
-          }, index * 150); // Staggered entrance
-        }
-      });
-    },
-    { threshold: 0.1 },
-  );
+    const particlesGeometry = new THREE.BufferGeometry();
+    const posArray = new Float32Array(1500 * 3);
+    for (let i = 0; i < 1500 * 3; i++) posArray[i] = (Math.random() - 0.5) * 10;
+    particlesGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(posArray, 3),
+    );
 
-  cards.forEach((card) => {
-    observer.observe(card);
+    const particlesMesh = new THREE.Points(
+      particlesGeometry,
+      new THREE.PointsMaterial({
+        size: 0.005,
+        color: "#0066ff",
+        transparent: true,
+        opacity: 0.8,
+      }),
+    );
+    scene.add(particlesMesh);
+    camera.position.z = 3;
 
-    // 2. Premium Tilt Effect
+    let mouseX = 0,
+      mouseY = 0;
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      particlesMesh.rotation.y += 0.001;
+      if (mouseX > 0) {
+        particlesMesh.rotation.x = mouseY * 0.00008;
+        particlesMesh.rotation.y = mouseX * 0.00008;
+      }
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / heroSection.offsetHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, heroSection.offsetHeight);
+    });
+  }
+
+  // --- 5. NEURAL SKILLS (3D TILT & CUSTOM LOGIC) ---
+  const skillCards = document.querySelectorAll(".skill");
+  skillCards.forEach((card) => {
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = (y - centerY) / 12;
-      const rotateY = (centerX - x) / 12;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      const rotateX = (y - rect.height / 2) / 10;
+      const rotateY = (rect.width / 2 - x) / 10;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.05)`;
     });
 
     card.addEventListener("mouseleave", () => {
-      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)`;
     });
   });
+
+  // Tech Stack Injection for "DEVELOPMENT" card
+  const devTitle = Array.from(document.querySelectorAll(".skill h2")).find(
+    (h2) => h2.innerText.includes("DEVELOPMENT"),
+  );
+  if (devTitle) {
+    devTitle.nextElementSibling.innerHTML = `
+      <span style="color: #00f2ff; font-weight: bold;">STACK:</span> 
+      React.js, Node.js, Three.js, & Growth Logic. 
+      <br><br>Architecting immersive neural interfaces and $0-to-profit digital ecosystems.
+    `;
+  }
 });
