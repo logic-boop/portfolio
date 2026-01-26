@@ -651,141 +651,124 @@ header.scrolled {
   }
 }
 /* ====== PREMIUM STRATEGIC PROJECTS SECTION ====== */
+/* CLASSY WORK CONTAINER */
 .workcontainer {
-  background-color: rgb(1, 1, 92);
-  padding: 100px 20px;
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.workcontainer .works {
-  color: #fff;
-  font-size: 42px;
-  font-weight: 700;
-  margin-bottom: 60px;
-  letter-spacing: -1px;
-}
-
-.workcontainer .works::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: #ff0055;
-  margin: 15px auto 0;
-  border-radius: 2px;
-}
-
-/* WORK CARDS CONTAINER */
-.Ws {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-/* INDIVIDUAL STRATEGIC CARDS */
-.work {
-  background: rgba(3, 3, 80, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-  width: 400px;
-  padding: 20px;
-  box-sizing: border-box;
-  text-align: left;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background-color: #01013d; /* Kept your signature Navy */
+  padding: 120px 5%;
   position: relative;
   overflow: hidden;
 }
 
-.work:hover {
-  transform: translateY(-20px) scale(1.02);
-  border-color: #00f2ff;
-  box-shadow:
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 20px rgba(0, 242, 255, 0.2);
+.workcontainer .works {
+  color: #fff;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  text-align: left;
+  margin-bottom: 80px;
+  letter-spacing: -2px;
+  text-transform: uppercase;
 }
 
-.work a {
-  text-decoration: none;
-  display: block;
-}
-
-/* WORK CARD CONTENT */
-.work h2 {
-  color: #ffffff;
-  font-size: 22px;
-  font-weight: 600;
-  margin: 15px 0 10px 0;
-  transition: color 0.3s;
-}
-
-.work:hover h2 {
-  color: #00f2ff;
-}
-
-.work p {
-  color: rgb(180, 180, 180);
-  line-height: 1.7;
-  font-size: 15px;
-  margin-bottom: 20px;
-  height: 80px; /* Maintains uniform card height */
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
-
-.work img {
+/* THE LIST STRUCTURE - SCALABLE FOR 15+ PROJECTS */
+.Ws {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 16px;
-  transition: transform 0.6s ease;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.work:hover img {
-  transform: scale(1.08);
+.work-item {
+  position: relative;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  cursor: pointer;
 }
 
-/* PREMIUM "VIEW CASE STUDY" TAG */
-.work::after {
-  content: "View Project →";
-  position: absolute;
-  bottom: 25px;
-  right: 25px;
-  color: #ff0055;
-  font-size: 14px;
+.work-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.work-flex {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex: 1;
+}
+
+.work-number {
+  font-family: "Inter", sans-serif;
+  color: rgba(255, 255, 255, 0.2);
   font-weight: 700;
+  font-size: 1rem;
+}
+
+.work-title {
+  color: #fff;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  transition:
+    transform 0.4s cubic-bezier(0.19, 1, 0.22, 1),
+    color 0.3s;
+}
+
+.work-category {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* INTERACTIVE HOVER STATE */
+.work-item:hover .work-title {
+  transform: translateX(30px);
+  color: #00f2ff; /* Your signature cyan */
+}
+
+.work-item:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* THE GHOST IMAGE (HIDDEN BY DEFAULT) */
+.project-hover-reveal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 250px;
+  pointer-events: none;
   opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s ease;
+  z-index: 10;
+  border-radius: 20px;
+  overflow: hidden;
+  transform: scale(0.8);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
 }
 
-.work:hover::after {
-  opacity: 1;
-  transform: translateX(0);
+.hover-reveal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* ===== RESPONSIVE FIXES ===== */
-@media (max-width: 976px) {
-  .work {
-    width: 45%;
-  }
-}
-
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .work {
-    width: 90%;
+  .work-flex {
+    gap: 15px;
   }
-  .work p {
-    height: auto;
-    -webkit-line-clamp: initial;
+  .work-category {
+    display: none;
   }
+  .project-hover-reveal {
+    display: none;
+  } /* Disable follow-mouse on mobile */
 }
 
 /* ========== NEURAL PARTNERSHIP INTERFACE ========== */
