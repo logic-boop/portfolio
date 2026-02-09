@@ -236,3 +236,20 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 });
+
+// Tilt logic for the Premium Card
+const premiumCard = document.querySelector(".premium-card");
+if (premiumCard) {
+  premiumCard.addEventListener("mousemove", (e) => {
+    const rect = premiumCard.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rotateX = (y - rect.height / 2) / 15;
+    const rotateY = (rect.width / 2 - x) / 15;
+    premiumCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  premiumCard.addEventListener("mouseleave", () => {
+    premiumCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+  });
+}
