@@ -379,7 +379,7 @@ header.scrolled {
 /* ==== THE PREMIUM MY INFO SECTION ====== */
 .infosect {
   background-color: rgb(1, 1, 92);
-  padding: 100px 0; /* Increased padding for a more luxurious feel */
+  padding: 100px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -1143,4 +1143,17 @@ header.scrolled {
   .obsidian-vault {
     padding: 40px 10px;
   }
+}
+
+/* ===== SOCIAL MEDIA ICONS FIX ===== */
+.icons .icon {
+  filter: brightness(5) invert(0); /* Force full white */
+  width: 42px;
+  height: 42px;
+}
+
+/* Optional: prevent overflow in containers */
+body,
+html {
+  overflow-x: hidden; /* Prevent horizontal scroll caused by overflowing elements */
 }

@@ -76,10 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // UI: Initiate Neural Uplink
       if (loader) loader.style.display = "inline-block";
-      btnText.textContent = "TRANSMITTING...";
+      btnText.textContent = "Sending...";
       status.className = "";
       status.style.opacity = "1";
-      status.textContent = "Initiating Neural Uplink to Olubode...";
+      status.textContent = "Initiating Request to Olubode...";
 
       const formData = new FormData(this);
 
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (response.ok) {
-          status.textContent = "PARTNERSHIP SECURED. SYSTEM CLEAR. ✔";
+          status.textContent = "MESSAGE SECURED. SYSTEM CLEAR. ✔";
           status.className = "success";
           contactForm.reset();
           contactForm.style.borderColor = "#00f2ff"; // Growth Architect Cyan
@@ -99,13 +99,13 @@ document.addEventListener("DOMContentLoaded", () => {
           throw new Error("Uplink Rejected");
         }
       } catch (err) {
-        status.textContent = "TRANSMISSION FAILED. RETRYING...";
+        status.textContent = "SENDING FAILED. RETRYING...";
         status.className = "error";
         console.error("Neuralis Error:", err);
       } finally {
         setTimeout(() => {
           if (loader) loader.style.display = "none";
-          btnText.textContent = "Initiate Partnership";
+          btnText.textContent = "Initiate Request";
           setTimeout(() => {
             contactForm.style.borderColor = "rgba(0, 242, 255, 0.2)";
           }, 5000);
